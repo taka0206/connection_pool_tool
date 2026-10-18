@@ -1,0 +1,269 @@
+﻿file,key,label,unit,format,description
+timeseries,timestamp,取得日時,,datetime,統計を取得した日時 (--tz のタイムゾーン)
+timeseries,epoch,エポック秒,秒,int,取得日時の UNIX 時刻
+timeseries,elapsed_sec,経過秒,秒,int,収集開始からの経過秒数
+timeseries,sample_no,サンプル番号,,int,取得の通し番号
+timeseries,host,ホスト,,text,ECS タスクID またはホスト名
+timeseries,datasource,データソース,,text,データソース名
+timeseries,ds_type,種別,,text,data-source (非XA) / xa-data-source (XA)
+timeseries,jndi_name,JNDI名,,text,データソースの JNDI 名
+timeseries,stats_enabled,統計有効,,text,statistics=pool の statistics-enabled (実行時の値)
+timeseries,status,状態,,status,OK=正常 / HIGH=高負荷(使用率が閾値以上) / WAIT=待機発生 / EXHAUSTED=枯渇 / NOSTATS=統計無効 / ERROR=取得失敗
+timeseries,usage_pct,使用率,%,pct,使用中接続数 ÷ 最大プールサイズ × 100
+timeseries,InUseCount,使用中接続数,本,int,アプリケーションが現在使用中の接続数 (InUseCount)
+timeseries,ActiveCount,作成済接続数,本,int,プール内に作成済みの物理接続数 (使用中 + アイドル) (ActiveCount)
+timeseries,IdleCount,アイドル接続数,本,int,プール内で未使用の接続数 (IdleCount) ※瞬間的に負値になる場合あり
+timeseries,AvailableCount,取得可能数,本,int,最大プールサイズまでに追加で取得できる接続数 (AvailableCount) 0 は枯渇
+timeseries,MaxUsedCount,最大使用数(累積),本,int,統計開始以降の使用中接続数の最大値 (MaxUsedCount)
+timeseries,min_pool_size,最小プールサイズ,本,int,min-pool-size (未設定時は 0)
+timeseries,max_pool_size,最大プールサイズ,本,int,max-pool-size (未設定時は既定値 20)
+timeseries,peak_usage_pct,ピーク使用率(累積),%,pct,MaxUsedCount ÷ 最大プールサイズ × 100
+timeseries,queued_threads,接続待ちスレッド数,件,int,取得時点で接続の空きを待っているスレッド数 (dump-queued-threads-in-pool)
+timeseries,d_WaitCount,待機発生数(区間),件,int,前回取得からの WaitCount 増分 (接続取得で待たされた要求数)
+timeseries,d_BlockingFailureCount,取得タイムアウト数(区間),件,int,前回取得からの BlockingFailureCount 増分 (blocking-timeout 超過で取得失敗 = 枯渇)
+timeseries,d_TimedOut,アイドルタイムアウト数(区間),件,int,前回取得からの TimedOut 増分 (アイドルタイムアウトで閉じた接続)
+timeseries,d_CreatedCount,接続作成数(区間),件,int,前回取得からの CreatedCount 増分
+timeseries,d_DestroyedCount,接続破棄数(区間),件,int,前回取得からの DestroyedCount 増分
+timeseries,d_TotalBlockingTime,待機時間合計(区間),ms,int,前回取得からの TotalBlockingTime 増分
+timeseries,d_TotalGetTime,取得時間合計(区間),ms,int,前回取得からの TotalGetTime 増分
+timeseries,d_TotalUsageTime,使用時間合計(区間),ms,int,前回取得からの TotalUsageTime 増分 (÷区間ミリ秒 ≒ 平均同時使用数)
+timeseries,WaitCount,待機発生数(累積),件,int,接続取得で待たされた要求数の累計 (WaitCount)
+timeseries,MaxWaitCount,最大同時待機数,件,int,同時に接続を待っていたスレッド数の最大値 (MaxWaitCount)
+timeseries,BlockingFailureCount,取得タイムアウト数(累積),件,int,接続取得タイムアウトの累計 (BlockingFailureCount)
+timeseries,TimedOut,アイドルタイムアウト数(累積),件,int,アイドルタイムアウトで閉じた接続の累計 (TimedOut)
+timeseries,CreatedCount,接続作成数(累積),件,int,物理接続の作成数の累計 (CreatedCount)
+timeseries,DestroyedCount,接続破棄数(累積),件,int,物理接続の破棄数の累計 (DestroyedCount)
+timeseries,AverageBlockingTime,平均待機時間,ms,int,接続取得時の平均待機時間 (AverageBlockingTime)
+timeseries,MaxWaitTime,最大待機時間,ms,int,接続取得時の最大待機時間 (MaxWaitTime)
+timeseries,TotalBlockingTime,待機時間合計,ms,int,接続取得時の待機時間の合計 (TotalBlockingTime)
+timeseries,AverageGetTime,平均取得時間,ms,int,接続取得に要した平均時間 (AverageGetTime)
+timeseries,MaxGetTime,最大取得時間,ms,int,接続取得に要した最大時間 (MaxGetTime)
+timeseries,TotalGetTime,取得時間合計,ms,int,接続取得に要した時間の合計 (TotalGetTime)
+timeseries,AverageUsageTime,平均使用時間,ms,int,アプリが接続を保持した平均時間 (AverageUsageTime)
+timeseries,MaxUsageTime,最大使用時間,ms,int,アプリが接続を保持した最大時間 (MaxUsageTime)
+timeseries,TotalUsageTime,使用時間合計,ms,int,アプリが接続を保持した時間の合計 (TotalUsageTime)
+timeseries,AverageCreationTime,平均接続作成時間,ms,int,物理接続の作成に要した平均時間 (AverageCreationTime)
+timeseries,MaxCreationTime,最大接続作成時間,ms,int,物理接続の作成に要した最大時間 (MaxCreationTime)
+timeseries,TotalCreationTime,接続作成時間合計,ms,int,物理接続の作成に要した時間の合計 (TotalCreationTime)
+timeseries,AveragePoolTime,平均プール滞留時間,ms,int,接続がプール内でアイドルだった平均時間 (AveragePoolTime)
+timeseries,MaxPoolTime,最大プール滞留時間,ms,int,接続がプール内でアイドルだった最大時間 (MaxPoolTime)
+timeseries,TotalPoolTime,プール滞留時間合計,ms,int,接続がプール内でアイドルだった時間の合計 (TotalPoolTime)
+timeseries,PreparedStatementCacheAccessCount,PSキャッシュ参照数,件,int,PreparedStatement キャッシュの参照数
+timeseries,PreparedStatementCacheHitCount,PSキャッシュヒット数,件,int,PreparedStatement キャッシュのヒット数
+timeseries,PreparedStatementCacheMissCount,PSキャッシュミス数,件,int,PreparedStatement キャッシュのミス数
+timeseries,PreparedStatementCacheAddCount,PSキャッシュ追加数,件,int,PreparedStatement キャッシュへの追加数
+timeseries,PreparedStatementCacheDeleteCount,PSキャッシュ削除数,件,int,PreparedStatement キャッシュからの削除数
+timeseries,PreparedStatementCacheCurrentSize,PSキャッシュ現在サイズ,件,int,PreparedStatement キャッシュの現在のエントリ数
+timeseries,ps_cache_hit_pct,PSキャッシュヒット率,%,pct,ヒット数 ÷ 参照数 × 100
+timeseries,XACommitCount,XAコミット数,件,int,XA commit の回数
+timeseries,XACommitAverageTime,XAコミット平均時間,ms,int,XA commit の平均時間
+timeseries,XACommitMaxTime,XAコミット最大時間,ms,int,XA commit の最大時間
+timeseries,XAPrepareCount,XAプリペア数,件,int,XA prepare の回数
+timeseries,XAPrepareAverageTime,XAプリペア平均時間,ms,int,XA prepare の平均時間
+timeseries,XAPrepareMaxTime,XAプリペア最大時間,ms,int,XA prepare の最大時間
+timeseries,XARollbackCount,XAロールバック数,件,int,XA rollback の回数
+timeseries,XARollbackAverageTime,XAロールバック平均時間,ms,int,XA rollback の平均時間
+timeseries,XARollbackMaxTime,XAロールバック最大時間,ms,int,XA rollback の最大時間
+timeseries,XAStartCount,XAスタート数,件,int,XA start の回数
+timeseries,XAStartAverageTime,XAスタート平均時間,ms,int,XA start の平均時間
+timeseries,XAStartMaxTime,XAスタート最大時間,ms,int,XA start の最大時間
+timeseries,XAEndCount,XAエンド数,件,int,XA end の回数
+timeseries,XAEndAverageTime,XAエンド平均時間,ms,int,XA end の平均時間
+timeseries,XAEndMaxTime,XAエンド最大時間,ms,int,XA end の最大時間
+timeseries,XARecoverCount,XAリカバリ数,件,int,XA recover の回数
+timeseries,XAForgetCount,XAフォーゲット数,件,int,XA forget の回数
+timeseries,note,備考,,text,カウンタリセット・取得失敗などの補足
+hourly,bucket_start,時間帯(開始),,datetime,集計単位(--bucket-min)の開始日時
+hourly,bucket_end,時間帯(終了),,text,集計単位の終了時刻
+hourly,datasource,データソース,,text,データソース名
+hourly,ds_type,種別,,text,data-source / xa-data-source
+hourly,samples,サンプル数,件,int,時間帯内の取得回数
+hourly,max_pool_size,最大プールサイズ,本,int,max-pool-size
+hourly,inuse_min,使用中 最小,本,int,使用中接続数の最小値
+hourly,inuse_max,使用中 最大,本,int,使用中接続数の最大値
+hourly,inuse_avg,使用中 平均,本,dec1,使用中接続数の平均値
+hourly,usage_pct_max,使用率 最大,%,pct,使用率の最大値
+hourly,usage_pct_avg,使用率 平均,%,pct,使用率の平均値
+hourly,active_min,作成済 最小,本,int,作成済接続数の最小値
+hourly,active_max,作成済 最大,本,int,作成済接続数の最大値
+hourly,active_avg,作成済 平均,本,dec1,作成済接続数の平均値
+hourly,idle_min,アイドル 最小,本,int,アイドル接続数の最小値
+hourly,idle_max,アイドル 最大,本,int,アイドル接続数の最大値
+hourly,idle_avg,アイドル 平均,本,dec1,アイドル接続数の平均値
+hourly,available_min,取得可能数 最小,本,int,取得可能数の最小値 (0 は枯渇)
+hourly,queued_threads_max,接続待ちスレッド 最大,件,int,接続待ちスレッド数の最大値
+hourly,high_samples,高負荷サンプル数,件,int,状態が HIGH のサンプル数
+hourly,wait_samples,待機サンプル数,件,int,状態が WAIT のサンプル数
+hourly,exhausted_samples,枯渇サンプル数,件,int,状態が EXHAUSTED のサンプル数
+hourly,error_samples,取得失敗数,件,int,状態が ERROR のサンプル数
+hourly,d_WaitCount,待機発生数,件,int,時間帯内の WaitCount 増分の合計
+hourly,d_BlockingFailureCount,取得タイムアウト数,件,int,時間帯内の BlockingFailureCount 増分の合計
+hourly,d_TimedOut,アイドルタイムアウト数,件,int,時間帯内の TimedOut 増分の合計
+hourly,d_CreatedCount,接続作成数,件,int,時間帯内の CreatedCount 増分の合計
+hourly,d_DestroyedCount,接続破棄数,件,int,時間帯内の DestroyedCount 増分の合計
+hourly,d_TotalBlockingTime,待機時間合計,ms,int,時間帯内の TotalBlockingTime 増分の合計
+hourly,MaxWaitCount,最大同時待機数(累積),件,int,時間帯末時点の MaxWaitCount
+hourly,MaxWaitTime,最大待機時間(累積),ms,int,時間帯末時点の MaxWaitTime
+hourly,MaxGetTime,最大取得時間(累積),ms,int,時間帯末時点の MaxGetTime
+hourly,MaxUsageTime,最大使用時間(累積),ms,int,時間帯末時点の MaxUsageTime
+hourly,MaxCreationTime,最大接続作成時間(累積),ms,int,時間帯末時点の MaxCreationTime
+hourly,status_worst,最悪状態,,status,時間帯内で最も深刻な状態
+summary,datasource,データソース,,text,データソース名
+summary,ds_type,種別,,text,data-source / xa-data-source
+summary,jndi_name,JNDI名,,text,JNDI 名
+summary,verdict_code,判定コード,,status,OK / HIGH / WAIT / EXHAUSTED / NOSTATS / ERROR
+summary,verdict,判定,,text,正常 / 高負荷あり / リーク疑い / 待機発生あり / 枯渇あり / 統計無効 / 取得失敗
+summary,min_pool_size,最小プールサイズ,本,int,min-pool-size
+summary,max_pool_size,最大プールサイズ,本,int,max-pool-size
+summary,first_timestamp,収集開始,,datetime,最初のサンプルの取得日時
+summary,last_timestamp,収集終了,,datetime,最後のサンプルの取得日時
+summary,duration_sec,収集時間,秒,int,収集期間 (最終 - 最初 + 間隔)
+summary,samples,サンプル数,件,int,取得回数
+summary,valid_samples,有効サンプル数,件,int,統計値を取得できた回数
+summary,error_samples,取得失敗数,件,int,取得に失敗した回数
+summary,nostats_samples,統計無効数,件,int,統計が無効だった回数
+summary,inuse_min,使用中 最小,本,int,使用中接続数の最小値
+summary,inuse_max,使用中 最大,本,int,使用中接続数の最大値
+summary,inuse_avg,使用中 平均,本,dec1,使用中接続数の平均値
+summary,inuse_p95,使用中 95%値,本,int,使用中接続数の 95 パーセンタイル
+summary,usage_pct_max,使用率 最大,%,pct,使用率の最大値
+summary,usage_pct_avg,使用率 平均,%,pct,使用率の平均値
+summary,usage_pct_p95,使用率 95%値,%,pct,使用中 95%値 ÷ 最大プールサイズ × 100
+summary,active_min,作成済 最小,本,int,作成済接続数の最小値
+summary,active_max,作成済 最大,本,int,作成済接続数の最大値
+summary,active_avg,作成済 平均,本,dec1,作成済接続数の平均値
+summary,idle_min,アイドル 最小,本,int,アイドル接続数の最小値
+summary,idle_max,アイドル 最大,本,int,アイドル接続数の最大値
+summary,idle_avg,アイドル 平均,本,dec1,アイドル接続数の平均値
+summary,available_min,取得可能数 最小,本,int,取得可能数の最小値 (0 は枯渇)
+summary,MaxUsedCount,最大使用数(累積),本,int,統計開始以降の使用中接続数の最大値
+summary,peak_usage_pct,ピーク使用率(累積),%,pct,MaxUsedCount ÷ 最大プールサイズ × 100
+summary,high_samples,高負荷サンプル数,件,int,状態が HIGH のサンプル数
+summary,wait_samples,待機サンプル数,件,int,状態が WAIT のサンプル数
+summary,exhausted_samples,枯渇サンプル数,件,int,状態が EXHAUSTED のサンプル数
+summary,exhausted_ratio_pct,枯渇サンプル率,%,pct,枯渇サンプル数 ÷ 有効サンプル数 × 100
+summary,exhausted_time_sec,枯渇時間(概算),秒,int,連続した枯渇期間(最終 - 最初 + 取得間隔)の合計
+summary,longest_exhausted_sec,最長連続枯渇時間,秒,int,枯渇状態が連続した最長時間
+summary,first_exhausted_at,初回枯渇日時,,datetime,最初に枯渇を検出した日時
+summary,last_exhausted_at,最終枯渇日時,,datetime,最後に枯渇を検出した日時
+summary,queued_threads_max,接続待ちスレッド 最大,件,int,接続待ちスレッド数の最大値
+summary,d_WaitCount,待機発生数,件,int,期間中の WaitCount 増分
+summary,d_BlockingFailureCount,取得タイムアウト数,件,int,期間中の BlockingFailureCount 増分 (> 0 は枯渇によるエラー発生)
+summary,d_TimedOut,アイドルタイムアウト数,件,int,期間中の TimedOut 増分
+summary,d_CreatedCount,接続作成数,件,int,期間中の CreatedCount 増分
+summary,d_DestroyedCount,接続破棄数,件,int,期間中の DestroyedCount 増分
+summary,d_TotalBlockingTime,待機時間合計,ms,int,期間中の TotalBlockingTime 増分
+summary,MaxWaitCount,最大同時待機数,件,int,MaxWaitCount (最終値)
+summary,MaxWaitTime,最大待機時間,ms,int,MaxWaitTime (最終値)
+summary,AverageBlockingTime,平均待機時間,ms,int,AverageBlockingTime (最終値)
+summary,AverageGetTime,平均取得時間,ms,int,AverageGetTime (最終値)
+summary,MaxGetTime,最大取得時間,ms,int,MaxGetTime (最終値)
+summary,AverageUsageTime,平均使用時間,ms,int,AverageUsageTime (最終値)
+summary,MaxUsageTime,最大使用時間,ms,int,MaxUsageTime (最終値)
+summary,AverageCreationTime,平均接続作成時間,ms,int,AverageCreationTime (最終値)
+summary,MaxCreationTime,最大接続作成時間,ms,int,MaxCreationTime (最終値)
+summary,ps_cache_hit_pct,PSキャッシュヒット率,%,pct,PreparedStatement キャッシュのヒット率 (最終値)
+summary,inuse_trend_per_hour,使用中 増加傾向,本/時,dec1,使用中接続数の回帰直線の傾き (1 時間あたり, 収集 30 分以上で算出)
+summary,leak_suspect,リーク疑い,,text,使用中接続数が期間中に 2 本以上増加傾向で、最小値(下限)も上昇している場合 yes
+summary,counter_resets,カウンタリセット回数,回,int,累積カウンタの減少を検出した回数 (再起動等)
+summary,comment,所見,,wrap,自動判定のコメント
+events,event_no,No,,int,イベント番号 (開始日時順)
+events,datasource,データソース,,text,データソース名
+events,ds_type,種別,,text,data-source / xa-data-source
+events,severity,重大度,,status,HIGH / WAIT / EXHAUSTED (期間中で最も深刻な状態)
+events,severity_label,重大度(表示),,text,高負荷 / 待機発生 / 枯渇
+events,start_time,開始日時,,datetime,連続した異常サンプルの最初の取得日時
+events,end_time,終了日時,,datetime,連続した異常サンプルの最後の取得日時
+events,duration_sec,継続時間,秒,int,終了 - 開始 + 取得間隔
+events,samples,サンプル数,件,int,イベント中のサンプル数
+events,inuse_max,使用中 最大,本,int,イベント中の使用中接続数の最大値
+events,max_pool_size,最大プールサイズ,本,int,max-pool-size
+events,usage_pct_max,使用率 最大,%,pct,イベント中の使用率の最大値
+events,queued_threads_max,接続待ちスレッド 最大,件,int,イベント中の接続待ちスレッド数の最大値
+events,d_WaitCount,待機発生数,件,int,イベント中の WaitCount 増分
+events,d_BlockingFailureCount,取得タイムアウト数,件,int,イベント中の BlockingFailureCount 増分
+events,MaxWaitCount,最大同時待機数(累積),件,int,イベント終了時点の MaxWaitCount
+events,MaxWaitTime,最大待機時間(累積),ms,int,イベント終了時点の MaxWaitTime
+config,datasource,データソース,,text,データソース名 (jdbc-driver はドライバ名)
+config,ds_type,種別,,text,data-source / xa-data-source / jdbc-driver
+config,category,分類,,text,主要 / その他 / 接続プロパティ / XAプロパティ / JDBCドライバ
+config,attribute,属性,,text,管理モデルの属性名
+config,label,説明,,text,主要属性の日本語名
+config,value,設定値,,text,設定値 (パスワード等はマスク)
+config,default_value,既定値,,text,未設定時に適用される既定値
+config,note,備考,,text,未設定時の補足
+queued,timestamp,取得日時,,datetime,接続待ちスレッドを検出した日時
+queued,epoch,エポック秒,秒,int,UNIX 時刻
+queued,sample_no,サンプル番号,,int,時系列のサンプル番号
+queued,host,ホスト,,text,ECS タスクID またはホスト名
+queued,datasource,データソース,,text,データソース名
+queued,signature_id,スタックID,,int,待機スタックの識別番号 (待機スタックシート参照)
+queued,waiting_threads,待機スレッド数,件,int,同じスタックで接続を待っていたスレッド数
+queued,caller_frame,getConnection 呼出元,,text,getConnection を呼び出したフレーム
+queued,app_frame,アプリケーションフレーム,,text,フレームワーク以外で最初に現れるフレーム
+queued,thread_names,スレッド名(例),,text,待機していたスレッド名 (最大3件)
+qstack,signature_id,スタックID,,int,待機スタックの識別番号
+qstack,datasource,データソース,,text,データソース名
+qstack,first_seen,初回検出日時,,datetime,このスタックを最初に検出した日時
+qstack,frame_count,フレーム数,,int,スタックフレーム数
+qstack,caller_frame,getConnection 呼出元,,text,getConnection を呼び出したフレーム
+qstack,app_frame,アプリケーションフレーム,,text,フレームワーク以外で最初に現れるフレーム
+qstack,stack,スタックトレース,,wrap,接続待ちスレッドのスタックトレース
+threaddump,dump_time,ダンプ日時,,datetime,スレッドダンプの取得日時
+threaddump,dump_file,ファイル,,text,スレッドダンプのテキストファイル名
+threaddump,trigger,契機,,text,取得契機 (状態とデータソース)
+threaddump,thread_name,スレッド名,,text,スレッド名
+threaddump,thread_state,スレッド状態,,text,RUNNABLE / WAITING / TIMED_WAITING / BLOCKED
+threaddump,category,分類,,text,接続待ち / 接続作成中 / JDBC実行中 (接続を保持して SQL 実行中)
+threaddump,jdbc_frame,JDBCフレーム,,text,IronJacamar JDBC ラッパーの最上位フレーム
+threaddump,app_frame,アプリケーションフレーム,,text,フレームワーク以外で最初に現れるフレーム
+threaddump,lock_name,待機ロック,,text,待機しているロック
+info,key,項目キー,,text,項目キー
+info,label,項目,,text,収集条件・環境の項目名
+info,value,値,,text,値
+status,OK,正常,,status,使用率が閾値未満で待機・枯渇なし
+status,HIGH,高負荷,,status,使用率が --warn-pct 以上
+status,WAIT,待機発生,,status,接続取得の待機が発生 (WaitCount 増加 または 待機スレッドあり)
+status,EXHAUSTED,枯渇,,status,使用中 = 最大プールサイズ / 取得可能数 0 / 取得タイムアウト発生
+status,NOSTATS,統計無効,,status,statistics-enabled=false のため値なし
+status,ERROR,取得失敗,,status,統計の取得に失敗
+ui,report_title,JBoss EAP コネクションプール 調査レポート,,text,レポートタイトル
+ui,sheet_summary,サマリ,,text,シート名
+ui,sheet_charts,グラフ,,text,シート名
+ui,sheet_hourly,時間別推移,,text,シート名
+ui,sheet_events,枯渇イベント,,text,シート名
+ui,sheet_timeseries,時系列,,text,シート名
+ui,sheet_queued,待機スレッド,,text,シート名
+ui,sheet_qstack,待機スタック,,text,シート名
+ui,sheet_threaddump,スレッドダンプ,,text,シート名
+ui,sheet_config,プール設定,,text,シート名
+ui,sheet_columns,項目説明,,text,シート名
+ui,sec_info,収集条件・環境,,text,見出し
+ui,sec_summary,データソース別サマリ,,text,見出し
+ui,sec_legend,状態の凡例,,text,見出し
+ui,col_item,項目,,text,見出し
+ui,col_unit,単位,,text,見出し
+ui,col_sheet,シート,,text,見出し
+ui,col_key,キー,,text,見出し
+ui,col_desc,説明,,text,見出し
+ui,col_format,書式,,text,見出し
+ui,generated,作成日時,,text,ラベル
+ui,source_dir,入力フォルダ,,text,ラベル
+ui,chart_ts,接続数の推移,,text,グラフタイトル
+ui,chart_hourly,時間別 使用中接続数,,text,グラフタイトル
+ui,chart_hourly_err,時間別 待機・取得タイムアウト発生数,,text,グラフタイトル
+ui,axis_conn,接続数(本),,text,軸タイトル
+ui,axis_count,件数,,text,軸タイトル
+ui,ser_inuse,使用中,,text,系列名
+ui,ser_active,作成済,,text,系列名
+ui,ser_idle,アイドル,,text,系列名
+ui,ser_maxpool,最大プールサイズ,,text,系列名
+ui,ser_inuse_max,使用中 最大,,text,系列名
+ui,ser_inuse_avg,使用中 平均,,text,系列名
+ui,ser_inuse_min,使用中 最小,,text,系列名
+ui,ser_wait,待機発生数,,text,系列名
+ui,ser_bf,取得タイムアウト数,,text,系列名
+ui,no_data,データがありません,,text,メッセージ
+ui,truncated,行数が Excel の上限を超えたため一部のみ出力しています,,text,メッセージ
+ui,msg_created,Excel を作成しました,,text,メッセージ
+ui,msg_sheets,シート,,text,メッセージ

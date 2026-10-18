@@ -1,0 +1,21 @@
+﻿signature_id,datasource,first_seen,frame_count,caller_frame,app_frame,stack
+1,"AppDS","2026-10-17 12:00:00",10,"org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl:getConnection:122","com.example.order.OrderRepository:lockStock:40","jdk.internal.misc.Unsafe:park:-2
+java.util.concurrent.Semaphore:tryAcquire:415
+org.jboss.jca.core.connectionmanager.pool.api.Semaphore:tryAcquire:76
+org.jboss.jca.core.connectionmanager.pool.AbstractPool:getConnection:653
+org.jboss.jca.adapters.jdbc.WrapperDataSource:getConnection:152
+org.jboss.as.connector.subsystems.datasources.WildFlyDataSource:getConnection:47
+org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl:getConnection:122
+com.example.order.OrderRepository:lockStock:40
+com.example.order.OrderService:placeOrder:88
+jakarta.servlet.http.HttpServlet:service:614"
+2,"AppDS","2026-10-17 12:00:00",10,"org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl:getConnection:122","com.example.order.OrderRepository:findByCustomer:41","jdk.internal.misc.Unsafe:park:-2
+java.util.concurrent.Semaphore:tryAcquire:415
+org.jboss.jca.core.connectionmanager.pool.api.Semaphore:tryAcquire:76
+org.jboss.jca.core.connectionmanager.pool.AbstractPool:getConnection:653
+org.jboss.jca.adapters.jdbc.WrapperDataSource:getConnection:152
+org.jboss.as.connector.subsystems.datasources.WildFlyDataSource:getConnection:47
+org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl:getConnection:122
+com.example.order.OrderRepository:findByCustomer:41
+com.example.order.OrderService:placeOrder:88
+jakarta.servlet.http.HttpServlet:service:614"
